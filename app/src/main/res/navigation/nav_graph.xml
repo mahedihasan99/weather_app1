@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/weatherFragment"
-        android:name="com.mahedi.weather_app_0400034063.weatherFragment"
+        android:name="com.mahedi.weather_app_0400034063.WeatherFragment"
         android:label="fragment_weather"
         tools:layout="@layout/fragment_weather" />
 </navigation>
