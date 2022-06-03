@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="item"
+            type="com.mahedi.weather_app_0400034063.models.ForecastModel.ForecastItem" />
 
     </data>
 

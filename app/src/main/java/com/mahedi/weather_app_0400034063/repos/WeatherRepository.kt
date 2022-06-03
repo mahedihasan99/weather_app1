@@ -8,16 +8,18 @@ import com.mahedi.weather_app_0400034063.weather_api_key
 
 class WeatherRepository {
 
-    suspend fun fetchCurrentData(location: Location): CurrentModel {
+    suspend fun fetchCurrentData(location: Location, status: Boolean): CurrentModel {
+        val unit = if (status) "imperial" else "metric"
         val endUrl =
-            "weather?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=$weather_api_key"
+            "weather?lat=${location.latitude}&lon=${location.longitude}&units=$unit&appid=$weather_api_key"
         return NetworkService.weatherServiceApi
             .getCurrentWeather(endUrl)
     }
 
-    suspend fun fetchForecastData(location: Location): ForecastModel {
+    suspend fun fetchForecastData(location: Location, status: Boolean): ForecastModel {
+        val unit = if (status) "imperial" else "metric"
         val endUrl =
-            "forecast?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=$weather_api_key"
+            "forecast?lat=${location.latitude}&lon=${location.longitude}&units=$unit&appid=$weather_api_key"
         return NetworkService.weatherServiceApi
             .getForecastWeather(endUrl)
     }

@@ -12,23 +12,23 @@ import com.mahedi.weather_app_0400034063.repos.WeatherRepository
 import com.mahedi.weather_app_0400034063.weather_api_key
 import kotlinx.coroutines.launch
 
-class WeatherViewModel: ViewModel() {
+class WeatherViewModel : ViewModel() {
     val repository = WeatherRepository()
     val locationLiveData : MutableLiveData<Location> = MutableLiveData()
-    val currentLiveData : MutableLiveData<CurrentModel> = MutableLiveData()
-    val forecastLiveData : MutableLiveData<ForecastModel> = MutableLiveData()
+    val currentLiveData: MutableLiveData<CurrentModel> = MutableLiveData()
+    val forecastLiveData: MutableLiveData<ForecastModel> = MutableLiveData()
 
-    fun setNewLocation(location: Location){
+    fun setNewLocation(location: Location) {
         locationLiveData.value = location
     }
 
-    fun fetchData(){
+    fun fetchData(status: Boolean) {
         viewModelScope.launch {
             try {
-                currentLiveData.value = repository.fetchCurrentData(locationLiveData.value!!)
-                forecastLiveData.value = repository.fetchForecastData(locationLiveData.value!!)
-            }catch (e: Exception){
-               Log.d("WeatherViewModel", e.localizedMessage)
+                currentLiveData.value = repository.fetchCurrentData(locationLiveData.value!!, status)
+                forecastLiveData.value = repository.fetchForecastData(locationLiveData.value!!, status)
+            }catch (e: Exception) {
+                Log.d("WeatherViewModel", e.localizedMessage)
             }
         }
     }
